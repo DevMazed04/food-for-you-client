@@ -1,0 +1,64 @@
+.slider-overlay img {
+   filter: brightness(40%);
+   opacity: 93%;
+}
+
+fs-mob {
+   font-size: 21px;
+}
+
+.lh-mob {
+   line-height: 20px;
+}
+
+.fs-slider-h1 {
+   font-size: 40px;
+}
+
+.lh-slider {
+   line-height: 37px;
+}
+
+.carousel-img {
+   height: 550px;
+}
+
+.carousel-caption {
+   width: 100% !important;
+   margin-left: -15%;
+}
+
+.car-cap {
+   margin-bottom: -18px;
+}
+
+.btn-order {
+   text-decoration: none;
+   color: white;
+}
+
+.btn-order:hover {
+   text-decoration: none !important;
+   color: whitesmoke !important;
+}
+
+
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+
+   .fs-slider-h1 {
+      font-size: 25px;
+   }
+
+   .padd-slider {
+      padding: 0px 10px !important;
+   }
+
+   .carousel-img {
+      height: 350px;
+   }
+
+   .car-cap {
+      margin-bottom: -18px;
+   }
+}
