@@ -1,0 +1,23 @@
+.login {
+   width: 30%;
+}
+
+.login-btn {
+   margin-bottom: 10px;
+   background-color: rgb(35, 107, 155) !important;
+}
+
+.fs-7 {
+   font-size: 17px;
+}
+
+.w-hr {
+   width: 80px;
+}
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+
+   .login {
+      width: 85%;
+   }
+}
