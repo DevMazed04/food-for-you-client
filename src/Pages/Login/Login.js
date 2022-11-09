@@ -9,6 +9,50 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { providerLogin, logIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const [error, setError] = useState("");
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    logIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("error", error);
+        setError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = (event) => {
+    event.preventDefault();
+
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("error", error);
+      });
+  };
 
   return (
     <div className="login mx-auto shadow-lg p-4 rounded-4 mt-5">
