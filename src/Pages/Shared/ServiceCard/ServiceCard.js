@@ -9,7 +9,12 @@ const ServiceCard = ({ service }) => {
   return (
     <div className="col">
       <div className="card course-cards rounded-2 border-0 p-3 rounded-3 shadow-lg">
-       
+        <PhotoProvider>
+          <PhotoView src={img}>
+            <img src={img} className="card-img-top  bg-dark rounded-3" alt="topic-img" height="150px"
+              style={{ objectFit: 'cover', cursor: "pointer" }} />
+          </PhotoView>
+        </PhotoProvider>
         <div className="card-body px-0 pb-0">
           <h5 className="card-title m-0 name text-start fw-bold">{title}</h5>
 

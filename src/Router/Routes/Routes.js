@@ -2,8 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
 // import Checkout from "../../Pages/Checkout/Checkout";
-// import CourseDetails from "../../Pages/CourseDetails/CourseDetails";
-// import Courses from "../../Pages/Courses/Courses";
 import FAQ from "../../Pages/FAQ/FAQ";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -11,7 +9,6 @@ import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";
 import Services from "../../Pages/Shared/Services/Services";
 // import PrivateRoute from "../PrivateRoute/PrivateRoute";
-// import LeftSideNav from "../../Pages/Shared/LeftSideNav/LeftSideNav";
 
 export const router = createBrowserRouter([
    {
@@ -29,16 +26,16 @@ export const router = createBrowserRouter([
          {
             path: '/services',
             element: <Services></Services>,
-            loader: () => fetch("https://programming-path-server.vercel.app/courses")
+            loader: () => fetch("https://programming-path-server.vercel.app/services")
          },
          // {
-         //    path: '/course-details/:id',
-         //    element: <CourseDetails></CourseDetails>,
-         //    loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/course-details/${params.id}`)
+         //    path: '/service-details/:id',
+         //    element: <serviceDetails></serviceDetails>,
+         //    loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/service-details/${params.id}`)
          // },
          // {
-         //    path: '/checkout-course/:id',
-         //    // loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/course-details/${params.id}`),
+         //    path: '/checkout-service/:id',
+         //    // loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/service-details/${params.id}`),
          //    element:
          //       <PrivateRoute>
          //          <Checkout></Checkout>
