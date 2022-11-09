@@ -1,0 +1,29 @@
+.register {
+   width: 30%;
+}
+
+
+.form-header {
+   color: rgb(49, 123, 172);
+
+}
+
+.reg-btn {
+   margin-bottom: 10px;
+   background-color: rgb(35, 107, 155) !important;
+}
+
+.reg-btn:hover {
+   background-color: rgb(16, 67, 101) !important;
+}
+
+.login-btn:hover {
+   background-color: rgb(16, 67, 101) !important;
+}
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+
+   .register {
+      width: 85%;
+   }
+}
