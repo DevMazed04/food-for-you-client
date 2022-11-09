@@ -9,6 +9,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";
+import Services from "../../Pages/Shared/Services/Services";
 // import PrivateRoute from "../PrivateRoute/PrivateRoute";
 // import LeftSideNav from "../../Pages/Shared/LeftSideNav/LeftSideNav";
 
@@ -25,11 +26,11 @@ export const router = createBrowserRouter([
             path: '/home',
             element: <Home></Home>
          },
-         // {
-         //    path: '/courses',
-         //    element: <Courses></Courses>,
-         //    loader: () => fetch("https://programming-path-server.vercel.app/courses")
-         // },
+         {
+            path: '/services',
+            element: <Services></Services>,
+            loader: () => fetch("https://programming-path-server.vercel.app/courses")
+         },
          // {
          //    path: '/course-details/:id',
          //    element: <CourseDetails></CourseDetails>,

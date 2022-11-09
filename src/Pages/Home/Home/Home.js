@@ -1,7 +1,6 @@
 import React from 'react';
-import Services from '../Services/Services';
+import Services from '../../Shared/Services/Services';
 import Slider from '../Slider/Slider';
-// import headerImg from '../../images/header.jpg';
 
 const Home = () => {
    return (
