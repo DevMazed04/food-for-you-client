@@ -1,23 +1,39 @@
-import React from 'react';
-import Services from '../../Shared/Services/Services';
-import Slider from '../Slider/Slider';
+import React from "react";
+import { Link } from "react-router-dom";
+import Services from "../../Shared/Services/Services";
+import Slider from "../Slider/Slider";
+import "./Home.css";
 
 const Home = () => {
    return (
       <section>
          <Slider></Slider>
+
+         <div className="mx-auto w-discover">
+            <h1 className="text-center fw-semibold mb-3 fs-tab fs-mob mt-5">
+               Online Food Delivery
+            </h1>
+            <p className="text-center text-secondary lh-tab w-info mx-auto">
+               <small>
+                  Curiosity is the process of asking questions, genuine questions,
+                  that are not leading to an ask for something in return. That are
+                  leading to an ask for something.
+               </small>
+            </p>
+         </div>
+
          <Services></Services>
 
-         {/* <div className='mt-5 border-danger header mx-auto rounded-4 px-0 py-2  d-flex justify-content-between  align-items-center ps-4 py-3 py-sm-0 header-bg'> */}
-         {/* <div className='text-start w-50'>
-               <h2>What to learn next?</h2>
-               <small className='text-secondary'>Welcome to my <strong>Programming Path</strong> website. You can visit my website and chosse your favourite programming service which you like. Happy programming</small>
-            </div> */}
-
-         {/* <div>
-               <img className='rounded-4' src={headerImg} alt="" width="130px" />
-            </div> */}
-         {/* </div> */}
+         <div className="d-flex justify-content-center">
+            <div>
+               <Link
+                  to="/services"
+                  className="btn btn-primary bg-gradient px-4 py-2 view-all mb-5"
+               >
+                  See All Services
+               </Link>
+            </div>
+         </div>
       </section>
    );
 };

@@ -1,0 +1,30 @@
+.w-discover {
+   width: 87% !important;
+}
+
+.w-info {
+   width: 70% !important;
+}
+
+.view-all {
+   margin-top: 0px !important;
+}
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+
+   .w-discover {
+      width: 90% !important;
+   }
+
+   .w-info {
+      width: 100% !important;
+   }
+
+   .fs-mob {
+      font-size: 21px;
+   }
+
+   .view-all {
+      margin-top: -10px !important;
+   }
+}

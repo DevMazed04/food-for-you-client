@@ -33,6 +33,32 @@ const FAQ = () => {
                   </div>
                </div>
             </div>
+
+            <div className="accordion-item border border-0 mb-3">
+               <h2 className="accordion-header" id="headingTwo">
+                  <button
+                     className="accordion-button collapsed bg-gradient text-dark opacity-75 fw-semibold px-4 py-4 border border-dark border-opacity-10 rounded"
+                     type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                     aria-controls="collapseTwo">
+                     What is JWT, and how does it work?
+                  </button>
+               </h2>
+               <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample">
+                  <div className="accordion-body text-secondary px-0 pe-3 px-lg-4 pb-3 px-3 text-start">
+                     <small>
+                        <b>Firebase</b> helps you develop high-quality apps, grow your user base, and earn more money. Each feature works independently, and they work even better together. The Firebase Realtime Database lets you build rich, collaborative applications by allowing secure access to the database directly from client-side code. Data is persisted locally, and even while offline, realtime events continue to fire, giving the end user a responsive experience.
+                        <br />
+                        The other free <b>alternative</b> of Firebase is <br />
+                        i) MongoDB, <br />
+                        ii) Supabase, <br />
+                        iii) RxDB, <br />
+                        iv) Etebase, <br />
+                        v) remoteStorage
+                     </small>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
    );
