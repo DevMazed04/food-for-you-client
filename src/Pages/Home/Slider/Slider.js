@@ -13,8 +13,7 @@ const Slider = () => {
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner rounded slider-overlay">
           {/* <SliderItem sliderImg={img1}></SliderItem>
-          <SliderItem sliderImg={img2}></SliderItem>
-          <SliderItem sliderImg={img3}></SliderItem> */}
+          */}
 
           <div className="carousel-item active">
             <img src={img1} className="d-block w-100 carousel-img" alt="slider-img-1" />
@@ -31,7 +30,7 @@ const Slider = () => {
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/login" className='btn-order'>Order Now</Link>
+                    <Link to="/services" className='btn-order'>See Order Services</Link>
                   </button>
                 </div>
               </div>
@@ -53,7 +52,7 @@ const Slider = () => {
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/login" className='btn-order'>Order Now</Link>
+                    <Link to="/services" className='btn-order'>See Order Services</Link>
                   </button>
                 </div>
               </div>
@@ -75,7 +74,7 @@ const Slider = () => {
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/login" className='btn-order'>Order Now</Link>
+                    <Link to="/services" className='btn-order'>See Order Services</Link>
                   </button>
                 </div>
               </div>

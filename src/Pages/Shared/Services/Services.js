@@ -37,7 +37,7 @@ const Services = () => {
         <div className="d-flex justify-content-center">
           <div className="mt-5">
             <Link
-              to="/blog"
+              to="/services"
               className="btn btn-primary bg-gradient px-4 py-2 view-all mb-5"
             >
               See All Services

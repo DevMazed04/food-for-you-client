@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { FaUserCircle } from "react-icons/fa";
-import { CiGift } from "react-icons/ci";
+// import { CiGift } from "react-icons/ci";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import logo from '../../../assets/logo.png';
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -19,7 +20,8 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg nav-bg navbar-dark mb-5 sticky-to">
       <div className="container-fluid">
         <Link className="navbar-brand fw-bold" to="/">
-          <CiGift className="fs-3 path"></CiGift>
+          {/* <CiGift className="fs-3 path"></CiGift> */}
+          <img src={logo} alt="logo" height="30px" className="bg-white rounded p-1" />
           <span className="ms-2 path"> Food For You</span>
         </Link>
 
@@ -35,7 +37,7 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item mx-1">
               <Link className="nav-link active" aria-current="page" to="/home">
                 Home
@@ -57,32 +59,29 @@ const Header = () => {
               </Link>
             </li>
 
-            <li className="nav-item mx-1 text-white mt-2">
-              <p>Dark</p>
-            </li>
-
             {/* <li className="nav-item mx-1">
               <Link className="nav-link active" to="/login">Login</Link>
             </li> */}
-
-            <li className="nav-item mx-1 d-flex align-items-center">
-              <Link className="nav-link active fw-bold log-in" to="/">
-                {user?.uid ? (
-                  <Link
-                    className="nav-link active fw-bold log-in"
-                    to="/login"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </Link>
-                ) : (
-                  <Link className="nav-link active fw-bold log-in" to="/login">
-                    Login
-                  </Link>
-                )}
-              </Link>
-            </li>
           </ul>
+
+
+          <li className="nav-item mx-1 d-flex align-items-center">
+            <div className="fw-bold log-in">
+              {user?.uid ? (
+                <Link
+                  className="nav-link active fw-bold log-in text-white me-2"
+                  to="/login"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link className="nav-link active fw-bold log-in text-white me-2" to="/login">
+                  Login
+                </Link>
+              )}
+            </div>
+          </li>
 
           <span className="navbar-text">
             <Link className="navbar-brand ms-2 me-0" to="/">

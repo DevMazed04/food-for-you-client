@@ -110,18 +110,6 @@ const Login = () => {
                 <span className="ms-2">Google</span>
               </Button>
             </div>
-
-            {/* <div>
-              <Button
-                variant="outline-secondary"
-                type="submit"
-                className="w-100 rounded-pill"
-                onClick={handleGithubSignIn}
-              >
-                <FaGithub className="fs-5"></FaGithub>
-                <span className="ms-2">GitHub</span>
-              </Button>
-            </div> */}
           </div>
 
           <p className="m-0 text-center mt-3">

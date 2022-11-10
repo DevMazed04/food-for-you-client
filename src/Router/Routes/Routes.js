@@ -7,6 +7,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";
+import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import Services from "../../Pages/Shared/Services/Services";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -26,13 +27,13 @@ export const router = createBrowserRouter([
          {
             path: '/services',
             element: <Services></Services>,
-            loader: () => fetch("https://programming-path-server.vercel.app/services")
+            loader: () => fetch("http://localhost:5000/services/")
          },
-         // {
-         //    path: '/service-details/:id',
-         //    element: <serviceDetails></serviceDetails>,
-         //    loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/service-details/${params.id}`)
-         // },
+         {
+            path: '/services/:id',
+            element: <ServiceDetails></ServiceDetails>,
+            loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+         },
          {
             path: '/faq',
             element: <FAQ></FAQ>
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
          },
          {
             path: '/checkout/:id',
-            // loader: ({ params }) => fetch(`https://programming-path-server.vercel.app/service-details/${params.id}`),
+            loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
             element:
                <PrivateRoute>
                   <Checkout></Checkout>

@@ -24,11 +24,11 @@ const FAQ = () => {
                         <b>2)</b> C++ From Beginner to Expert, <br />
                         <b>3)</b> Java Programming Masterclass,
                         <br />
-                        <b>4)</b> The Complete Python Course, <br />
+                        <b>4)</b> The Complete Python service, <br />
                         <b>5)</b> JavaScript: The Complete Guide, <br />
                         <b>6)</b> React Development Bootcamp.
                         <br />
-                        We upload more courses as soon as possible, Thank you.
+                        We upload more services as soon as possible, Thank you.
                      </small>
                   </div>
                </div>
