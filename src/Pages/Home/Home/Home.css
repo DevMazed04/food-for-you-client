@@ -10,7 +10,21 @@
    margin-top: 0px !important;
 }
 
+.header {
+   width: 91%;
+   margin-bottom: 120px !important;
+
+}
+
+
 @media only screen and (min-width:280px) and (max-width:575px) {
+
+   .header {
+      width: 100% !important;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 80px !important;
+   }
 
    .w-discover {
       width: 90% !important;

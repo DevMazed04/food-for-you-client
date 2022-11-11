@@ -18,7 +18,7 @@ const ServiceDetails = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews`)
+    fetch(`https://food-for-you-server.vercel.app/reviews`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
@@ -50,7 +50,7 @@ const ServiceDetails = () => {
                     </h5>
                     <div className="card-text">
                       <p className="text-decoration-underline mb-1 fw-bold fs-6">
-                         Description:
+                        Description:
                       </p>
                       {description}
                     </div>

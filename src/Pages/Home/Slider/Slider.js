@@ -4,7 +4,6 @@ import img1 from '../../../assets/images/slider/1.jpg';
 import img2 from '../../../assets/images/slider/2.jpg';
 import img3 from '../../../assets/images/slider/3.jpg';
 import { Link } from 'react-router-dom';
-// import SliderItem from './SliderItem';
 
 const Slider = () => {
 
@@ -12,8 +11,6 @@ const Slider = () => {
     <section className="container mt-1 mt-sm-3 padd-slider">
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner rounded slider-overlay">
-          {/* <SliderItem sliderImg={img1}></SliderItem>
-          */}
 
           <div className="carousel-item active">
             <img src={img1} className="d-block w-100 carousel-img" alt="slider-img-1" />
@@ -23,14 +20,13 @@ const Slider = () => {
                   <br className="lh-slider" />
                   To Your Home
                 </h1>
-                <p className="fw-lighter lh-tab lh-mob"><small>Online Food Delivery is the method
-                  based on
-                  the
-                  use of new digital tools to enable learners to learn in a different way.</small>
+                <p className="fw-lighter lh-tab lh-mob"><small>
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order your food delivery from FOod For You Website.
+                </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See Order Services</Link>
+                    <Link to="/services" className='btn-order'>See delivery Services</Link>
                   </button>
                 </div>
               </div>
@@ -45,14 +41,13 @@ const Slider = () => {
                   <br className="lh-slider" />
                   To Your Home
                 </h1>
-                <p className="fw-lighter lh-tab lh-mob"><small>Online Food Delivery is the method
-                  based on
-                  the
-                  use of new digital tools to enable learners to learn in a different way.</small>
+                <p className="fw-lighter lh-tab lh-mob"><small>
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from FOod For You
+                </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See Order Services</Link>
+                    <Link to="/services" className='btn-order'>See delivery Services</Link>
                   </button>
                 </div>
               </div>
@@ -67,14 +62,13 @@ const Slider = () => {
                   <br className="lh-slider" />
                   To Your Home
                 </h1>
-                <p className="fw-lighter lh-tab lh-mob"><small>Online Food Delivery is the method
-                  based on
-                  the
-                  use of new digital tools to enable learners to learn in a different way.</small>
+                <p className="fw-lighter lh-tab lh-mob"><small>
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from FOod For You
+                </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See Order Services</Link>
+                    <Link to="/services" className='btn-order'>See delivery Services</Link>
                   </button>
                 </div>
               </div>

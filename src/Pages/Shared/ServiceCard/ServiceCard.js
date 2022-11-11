@@ -19,7 +19,7 @@ const ServiceCard = ({ service }) => {
           <h5 className="card-title m-0 name text-start fw-bold">{title}</h5>
 
           <p className="card-text mt-2">
-            ${description.length > 100
+            {description.length > 100
               ? description.slice(0, 100) + "..."
               : description
             }

@@ -6,7 +6,7 @@ const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://food-for-you-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -15,7 +15,7 @@ const Services = () => {
     <div>
       <section className="container mb-5">
         <div className="mx-auto w-discover">
-          <h2 className="text-center fw-semibold mb-3 fs-tab fs-mob mt-5">
+          <h2 className="text-center fw-semibold mb-3 fs-tab fs-mob">
             My Delivery Services ({services.length})
           </h2>
         </div>
