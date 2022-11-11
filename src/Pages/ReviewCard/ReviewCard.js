@@ -6,13 +6,15 @@ const ReviewCard = ({ review }) => {
 
    return (
       <div className="col">
-         <div className="card d-flex rounded-3">
-            <div>
-               <img src={customerImg} className="card-img-top rounded-pill img-width" alt={customer} />
-            </div>
-            <div className="card-body" >
-               <h5 className="card-title">{customer}</h5>
-               <p className="card-text">{message}</p>
+         <div className="card rounded-3 review-card mx-auto">
+            <div className='d-flex align-items-center'>
+               <div>
+                  <img src={customerImg} className="card-img-top rounded-3 img-width ms-2" alt={customer} />
+               </div>
+               <div className="card-body" >
+                  <p className="card-title"><b>Name:</b> {customer}</p>
+                  <p className="card-text"><b>Review:</b> {message}</p>
+               </div>
             </div>
          </div>
       </div >

@@ -1,3 +1,16 @@
 .img-width {
    width: 50px !important;
+   height: 50px !important;
+}
+
+.review-card {
+   width: 70%;
+}
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+
+   .review-card {
+      width: 90%;
+   }
+
 }

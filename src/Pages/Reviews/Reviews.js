@@ -52,12 +52,12 @@ const Reviews = () => {
       </h4>
 
       <form onSubmit={handleReview}>
-        <div className="mb-3 w-50 mx-auto">
-          <label htmlFor="exampleFormControlTextarea1" className="form-label">Review Text</label>
+        <div className="mb-3 reviews mx-auto">
+          <label htmlFor="exampleFormControlTextarea1" className="form-label fw-semibold">Review Text :</label>
           <textarea className="form-control" rows="3" name="message" placeholder="Type Your Review"></textarea>
         </div>
 
-        <div className='w-50 mx-auto'>
+        <div className='btn-submit-review mx-auto'>
           <button className="btn btn-primary" type="submit">Submit</button>
         </div>
       </form >

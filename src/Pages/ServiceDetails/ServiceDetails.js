@@ -18,7 +18,7 @@ const ServiceDetails = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/reviews`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
@@ -46,11 +46,11 @@ const ServiceDetails = () => {
                   <div className="card-body">
                     <h4 className="card-title fw-bold mb-3">Name: {title}</h4>
                     <h5 className="card-text mb-3 ">
-                      <b>Price:</b> <span className="fw-bold">${price}</span>
+                      <b>Price:</b> <span className="fw-bold text-primary">${price}</span>
                     </h5>
                     <div className="card-text">
-                      <p className="text-decoration-underline mb-1 fw-bold">
-                        service Description:
+                      <p className="text-decoration-underline mb-1 fw-bold fs-6">
+                         Description:
                       </p>
                       {description}
                     </div>
@@ -71,7 +71,7 @@ const ServiceDetails = () => {
       </Container>
 
       <div>
-        <h3 className="text-center">Total Reviews: {reviews.length}</h3>
+        <h3 className="text-center mb-3">All Reviews ({reviews.length})</h3>
 
         <div className="row row-cols-1 row-cols-md-1 g-4">
           {reviews.map(review => <ReviewCard
@@ -81,7 +81,6 @@ const ServiceDetails = () => {
           }
         </div>
       </div>
-      <hr />
       <Reviews></Reviews>
     </div>
   );
