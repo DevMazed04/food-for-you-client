@@ -52,13 +52,13 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item mx-1">
-              <Link className="nav-link active" to="/faq">
-                FAQ
+              <Link className="nav-link active" to="/blog">
+                Blogs
               </Link>
             </li>
             <li className="nav-item mx-1">
-              <Link className="nav-link active" to="/blog">
-                Blogs
+              <Link className="nav-link active" to="/faq">
+                FAQ
               </Link>
             </li>
           </ul>
