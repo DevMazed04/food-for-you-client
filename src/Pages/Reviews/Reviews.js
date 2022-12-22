@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import './Reviews.css';
 
 const Reviews = () => {
   const { _id, title } = useLoaderData();
   const { user } = useContext(AuthContext);
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
+
+  // const from = location.state?.from?.pathname || "/";
 
   const handleReview = event => {
     event.preventDefault();
@@ -47,20 +52,41 @@ const Reviews = () => {
 
   return (
     <div>
-      <h4 className="mb-4 text-primar text-center fw-bold form-header mt-5">
-        Give A Review:
-      </h4>
 
-      <form onSubmit={handleReview}>
-        <div className="mb-3 reviews mx-auto">
-          <label htmlFor="exampleFormControlTextarea1" className="form-label fw-semibold">Review Text :</label>
-          <textarea className="form-control" rows="3" name="message" placeholder="Type Your Review"></textarea>
-        </div>
+      {
+        user?.email ?
+          <>
+            <div className=''>
+              <h4 className="mb-4 text-primar text-center fw-bold form-header mt-5">
+                Give A Review:
+              </h4>
 
-        <div className='btn-submit-review mx-auto'>
-          <button className="btn btn-primary" type="submit">Submit</button>
-        </div>
-      </form >
+              <form onSubmit={handleReview}>
+                <div className="mb-3 reviews mx-auto">
+                  <label htmlFor="exampleFormControlTextarea1" className="form-label fw-semibold">Review Text :</label>
+                  <textarea className="form-control" rows="3" name="message" placeholder="Type Your Review"></textarea>
+                </div>
+
+                <div className='btn-submit-review mx-auto'>
+                  <button className="btn btn-primary" type="submit">Submit</button>
+                </div>
+              </form >
+            </div>
+          </>
+          :
+          <>
+            <div>
+              <h4 className="mb-4 text-primar text-center fw-bold form-header mt-5">
+                Please,
+                {/* <Link to='/login' className='text-decoration-none mx-2'> */}
+                  <span className='border p-2 bg-warning rounded-4 text-white mx-2'>Log In
+                  </span>
+                {/* </Link> */}
+                to give a review
+              </h4>
+            </div>
+          </>
+      }
     </div >
   );
 };

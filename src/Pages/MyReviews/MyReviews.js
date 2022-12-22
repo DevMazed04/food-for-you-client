@@ -15,15 +15,24 @@ const MyReviews = () => {
 
    return (
       <div>
-         <h4 className="mb-4 text-primar text-center fw-bold form-header">
-            My Reviews ({myReviews.length})
-         </h4>
+         {
+            myReviews.length === 0 ? <p className="fs-4 fw-semibold text-danger d-flex justify-content-center align-items-center">No reviews were added</p>
+               :
+               <section>
+                  <h4 className="mb-4 text-primar text-center fw-bold form-header">
+                     My Reviews ({myReviews.length})
+                  </h4>
 
-         <div className="row row-cols-1 row-cols-md-1 g-4">
-            {myReviews.map((myReview) => (
-               <MyReviewCard key={myReview._id} myReview={myReview}></MyReviewCard>
-            ))}
-         </div>
+                  <div className="row row-cols-1 row-cols-md-1 g-4">
+                     {myReviews.map((myReview) => (
+                        <MyReviewCard key={myReview._id} myReview={myReview}></MyReviewCard>
+                     ))}
+                  </div>
+               </section>
+
+         }
+
+
       </div>
    );
 };

@@ -69,11 +69,11 @@ const Header = () => {
                       </Link>
                     </div>
 
-                    <div className="nav-item me-4 fs-6 text-white mb-4 mb-lg-0">
+                    {/* <div className="nav-item me-4 fs-6 text-white mb-4 mb-lg-0">
                       <Link className="nav-link active" to="/add-service">
                         Add service
                       </Link>
-                    </div>
+                    </div> */}
 
                     <Link
                       className="nav-link active fw-bold log-in text-white me-2 mb-3 mb-lg-0"

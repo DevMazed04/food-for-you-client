@@ -36,7 +36,7 @@ const MyReviewCard = ({ myReview }) => {
 
         <div className='d-flex justify-content-center'>
           <Link to={`/update-my-review/${_id}`}>
-            <button className="btn btn-sm btn-outline-primary btn-width mt-3 me-3">  {/* onClick={() => handleUpdate(_id)} */}
+            <button className="btn btn-sm btn-outline-primary btn-width mt-3 me-3">
               Edit Review
             </button>
           </Link>
