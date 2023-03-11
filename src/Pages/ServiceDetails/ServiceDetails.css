@@ -1,3 +1,9 @@
 .service-details {
-   /* margin-left: 50% !important; */
+   width: 75% !important;
+}
+
+@media only screen and (min-width:280px) and (max-width:575px) {
+   .service-details {
+      width: 100% !important;
+   }
 }

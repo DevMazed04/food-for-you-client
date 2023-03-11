@@ -20,6 +20,7 @@ const Reviews = () => {
     const email = user?.email || 'Unregistered';
     const image = user?.photoURL || 'Not Found';
     const message = form.message.value;
+    const ratings = form.ratings.value;
 
     const review = {
       service: _id,
@@ -27,7 +28,8 @@ const Reviews = () => {
       customer: name,
       customerImg: image,
       email,
-      message
+      message,
+      ratings
     }
 
     fetch('https://food-for-you-server.vercel.app/reviews', {
@@ -47,7 +49,6 @@ const Reviews = () => {
         }
       })
       .catch(err => console.error(err));
-
   }
 
   return (
@@ -56,19 +57,24 @@ const Reviews = () => {
       {
         user?.email ?
           <>
-            <div className=''>
-              <h4 className="mb-4 text-primar text-center fw-bold form-header mt-5">
+            <div>
+              <h4 className="mb-3 text-primar text-cente fw-bold form-header mt-4 ms-3 fs-5">
                 Give A Review:
               </h4>
 
-              <form onSubmit={handleReview}>
-                <div className="mb-3 reviews mx-auto">
-                  <label htmlFor="exampleFormControlTextarea1" className="form-label fw-semibold">Review Text :</label>
+              <form onSubmit={handleReview} className="py-3 mx-3 card border-0 shadow rounded-2">
+
+                <div className="mb-1 reviews mx-auto">
+                  <input type="number" className="form-control mb-2" name="ratings" placeholder="Give Ratings Out Of 5" maxLength={1} ></input>
+                </div>
+
+                <div className="mb-1 reviews mx-auto">
+                  {/* <label htmlFor="exampleFormControlTextarea1" className="form-label fw-semibold">Review Text :</label> */}
                   <textarea className="form-control" rows="3" name="message" placeholder="Type Your Review"></textarea>
                 </div>
 
-                <div className='btn-submit-review mx-auto'>
-                  <button className="btn btn-primary" type="submit">Submit</button>
+                <div className=''>
+                  <button className="btn btn-sm btn-submit-review btn-primary" type="submit">Submit</button>
                 </div>
               </form >
             </div>
@@ -76,12 +82,12 @@ const Reviews = () => {
           :
           <>
             <div>
-              <h4 className="mb-4 text-primar text-center fw-bold form-header mt-5">
-                Please,
-                {/* <Link to='/login' className='text-decoration-none mx-2'> */}
-                  <span className='border p-2 bg-warning rounded-4 text-white mx-2'>Log In
+              <h4 className="mb-4 ms-3 fw-bold form-header mt-4">
+                Please
+                <Link to='/login' className='text-decoration-none mx-1'>
+                  <span className='px-3 px-md-2 px-lg-3 py-2 bg-warning rounded-3 text-white mx-2'>Log In
                   </span>
-                {/* </Link> */}
+                </Link>
                 to give a review
               </h4>
             </div>

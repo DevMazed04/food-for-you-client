@@ -8,12 +8,12 @@ import { Link } from 'react-router-dom';
 const Slider = () => {
 
   return (
-    <section className="container mt-1 mt-sm-3 padd-slider">
+    <section className="containe mt-1 mt-sm-3 padd-slider">
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner rounded slider-overlay">
 
           <div className="carousel-item active">
-            <img src={img1} className="d-block w-100 carousel-img" alt="slider-img-1" />
+            <img src={img1} className="d-block w-100 carousel-img" alt="slider-img-2" />
             <div className="carousel-caption d-flex align-items-center justify-content-center h-100 car-cap">
               <div className="w-75">
                 <h1 className="fw-semibold mb-3 lh-sm fs-slider-h1">Online Food Delivery
@@ -21,12 +21,12 @@ const Slider = () => {
                   To Your Home
                 </h1>
                 <p className="fw-lighter lh-tab lh-mob"><small>
-                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order your food delivery from FOod For You Website.
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order your food delivery from Food For You Website.
                 </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See delivery Services</Link>
+                    <Link to="/services" className='btn-order'>See My Services</Link>
                   </button>
                 </div>
               </div>
@@ -42,12 +42,12 @@ const Slider = () => {
                   To Your Home
                 </h1>
                 <p className="fw-lighter lh-tab lh-mob"><small>
-                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from FOod For You
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from Food For You
                 </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See delivery Services</Link>
+                    <Link to="/services" className='btn-order'>See My Services</Link>
                   </button>
                 </div>
               </div>
@@ -63,12 +63,12 @@ const Slider = () => {
                   To Your Home
                 </h1>
                 <p className="fw-lighter lh-tab lh-mob"><small>
-                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from FOod For You
+                  Online Food Delivery is the process whereby food that was ordered online is prepared and delivered to the consumer. You can order food delivery from Food For You
                 </small>
                 </p>
                 <div>
                   <button className="btn btn-primary bg-gradient px-md-3 px-lg-4 py-md-2 mt-2">
-                    <Link to="/services" className='btn-order'>See delivery Services</Link>
+                    <Link to="/services" className='btn-order'>See My Services</Link>
                   </button>
                 </div>
               </div>

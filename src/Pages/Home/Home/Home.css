@@ -2,6 +2,10 @@
    width: 87% !important;
 }
 
+.w-header {
+   width: 60% !important;
+}
+
 .w-info {
    width: 70% !important;
 }
@@ -11,9 +15,13 @@
 }
 
 .header {
-   width: 91%;
+   width: 95%;
    margin-bottom: 120px !important;
+}
 
+.lottie {
+   width: 50% !important;
+   margin-top: 75px;
 }
 
 
@@ -24,6 +32,15 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 80px !important;
+   }
+
+   .w-header {
+      width: 75% !important;
+   }
+
+   .lottie {
+      width: 75% !important;
+      margin-top: 20px !important;
    }
 
    .w-discover {

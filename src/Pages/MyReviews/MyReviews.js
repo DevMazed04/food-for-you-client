@@ -23,7 +23,7 @@ const MyReviews = () => {
                      My Reviews ({myReviews.length})
                   </h4>
 
-                  <div className="row row-cols-1 row-cols-md-1 g-4">
+                  <div className="row row-cols-1 row-cols-md-1 g-4 my-reviews mx-auto">
                      {myReviews.map((myReview) => (
                         <MyReviewCard key={myReview._id} myReview={myReview}></MyReviewCard>
                      ))}

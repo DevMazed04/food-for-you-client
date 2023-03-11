@@ -16,7 +16,7 @@ const Services = () => {
       <section className="container mb-5">
         <div className="mx-auto w-discover">
           <h2 className="text-center fw-semibold mb-3 fs-tab fs-mob">
-            My Delivery Services ({services.length})
+            My Delivery Services
           </h2>
         </div>
 

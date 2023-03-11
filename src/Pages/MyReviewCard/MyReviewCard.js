@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './MyReviewCard.css';
 
 const MyReviewCard = ({ myReview }) => {
-  const { _id, serviceName, message } = myReview;
+  const { _id, serviceName, message, ratings } = myReview;
   console.log('_id:', _id)
 
   const handleDelete = (id) => {
@@ -29,8 +29,9 @@ const MyReviewCard = ({ myReview }) => {
       <div className="card rounded-4 review-card mx-auto p-3">
         <div className='d-flex align-items-center'>
           <div className="card-body" >
-            <p className="card-title"><b>Service Name:</b> {serviceName}</p>
-            <p className="card-text"><b>Review:</b> {message}</p>
+            <p className="card-title"><b>Delivery Name:</b> {serviceName}</p>
+            <p className="card-title"><b>Review:</b> {message}</p>
+            <p className="card-title"><b>Ratings:</b> {ratings}</p>
           </div>
         </div>
 

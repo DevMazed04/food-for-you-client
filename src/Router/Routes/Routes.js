@@ -9,6 +9,7 @@ import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
+import AllServices from "../../Pages/Shared/Services/AllServices";
 import Services from "../../Pages/Shared/Services/Services";
 import UpdateMyReview from "../../Pages/UpdateMyReview/UpdateMyReview";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -28,8 +29,7 @@ export const router = createBrowserRouter([
          },
          {
             path: '/services',
-            element: <Services></Services>,
-            loader: () => fetch("https://food-for-you-server.vercel.app/services/")
+            element: <AllServices></AllServices>,
          },
          {
             path: '/services/:id',

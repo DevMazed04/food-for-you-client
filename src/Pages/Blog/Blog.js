@@ -4,8 +4,8 @@ import './Blog.css'
 const Blog = () => {
   return (
     <div>
-      <h2 className="fw-semibold text-black opacity-75 text-center px-4 mt-5 mb-3 mb-sm-3">
-        Common Interview Questions
+      <h2 className="fw-semibold text-black opacity-75 text-center px-4 mt-4 mb-5">
+         Some Common Questions
       </h2>
 
       <div className="accordion border border-0 mx-auto mt-4 mt-sm-5 my-lg-4 px-4 px-lg-5 rounded nav-width"

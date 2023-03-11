@@ -1,9 +1,11 @@
 .reviews {
-   width: 70%;
+   width: 93%;
 }
 
 .btn-submit-review {
-   width: 70%;
+   width: 16%;
+   margin-left: 19px;
+   margin-top: 6px !important;
 }
 
 
