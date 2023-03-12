@@ -8,7 +8,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import Loader from "../Shared/Loader/Loader";
 import { ScaleLoader } from "react-spinners";
 import "./Reviews.css";
 
@@ -122,12 +121,12 @@ const Reviews = () => {
           <div>
             <h4 className="mb-4 ms-3 fw-bold form-header mt-4 fs-4">
               Please
-              <Link to="/login" className="text-decoration-none mx-1">
+              <Link to="/login" className="text-decoration-none">
                 <span className="px-3 px-md-2 px-lg-3 py-1 bg-warning rounded-3 text-white mx-2">
                   Log In
                 </span>
               </Link>
-              to give a review
+              Log In to give a review
             </h4>
           </div>
         </>

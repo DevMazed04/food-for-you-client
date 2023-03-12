@@ -8,6 +8,7 @@ import logo from "../../../assets/logo.png";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log("user:", user);
 
   const handleLogout = () => {
     logOut()
@@ -56,55 +57,55 @@ const Header = () => {
                 Blogs
               </Link>
             </li>
+
+            {user?.uid && (
+              <li
+                li
+                className="nav-item fs-6 text-white mt-1 mt-lg-0 mb-4 mb-lg-0"
+              >
+                <Link className="nav-link active" to="/my-reviews">
+                  My Reviews
+                </Link>
+              </li>
+            )}
           </ul>
 
           <li className="nav-item mx-1 d-flex align-items-center">
             <div className="log-in">
-              {user?.uid ?
-                (
-                  <div className="d-flex-col d-lg-flex">
-                    <div className="nav-item me-4 fs-6 text-white mt-1 mt-lg-0 mb-4 mb-lg-0">
-                      <Link className="nav-link active" to="/my-reviews">
-                        My Reviews
-                      </Link>
-                    </div>
+              {user?.uid ? (
+                <div className="d-flex-col d-lg-flex">
+                  {/* <small className="ms-1 text-white none d-lg-block"></small> */}
+                  <small className="ms-0 ms-md-1 me-3 hi-header fw-bold mt-0 mt-md-1">
+                    {user?.displayName}
+                  </small>
 
-                    {/* <div className="nav-item me-4 fs-6 text-white mb-4 mb-lg-0">
-                      <Link className="nav-link active" to="/add-service">
-                        Add service
-                      </Link>
-                    </div> */}
-
-                    <Link
-                      className="nav-link active fw-bold log-in text-white me-2 mb-3 mb-lg-0"
-                      to="/login"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </Link>
-                  </div>
-
-                )
-                :
-                (
                   <Link
-                    className="nav-link active fw-bold log-in text-white me-2"
+                    className="nav-link active fw-bold log-in text-white me-2 mt-2 mt-md-0 mb-3 mb-lg-0 log-out"
                     to="/login"
+                    onClick={handleLogout}
                   >
-                    Login
+                    Logout
                   </Link>
-                )}
+                </div>
+              ) : (
+                <Link
+                  className="nav-link active fw-bold log-in text-white me-2"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </li>
 
           <span className="navbar-text">
-            <Link className="navbar-brand ms-2 me-0" to="/">
+            <Link className="navbar-brand me-0" to="/">
               {user?.photoURL ? (
                 <img
-                  src={user.photoURL}
-                  alt=""
-                  width="30"
-                  height="28"
+                  src={user?.photoURL}
+                  alt={user?.displayName}
+                  width="32"
+                  height="30"
                   className="d-inline-block align-text-top rounded-pill mb-3 mb-lg-0"
                   title={user?.displayName}
                 />

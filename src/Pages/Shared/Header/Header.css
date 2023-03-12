@@ -12,10 +12,19 @@
 }
 
 .log-in:hover {
-   color: rgb(137, 233, 233) !important;
+   color: rgb(79, 200, 200) !important;
 }
 
 .nav-link:hover {
-   font-size: 17px;
+   color: rgb(137, 233, 233) !important;
+   font-size: 16px;
    font-weight: bold;
+}
+
+.hi-header {
+   color: rgba(47, 255, 85, 0.793) !important;
+}
+
+.log-out:hover {
+   color: rgb(253, 117, 68) !important;
 }

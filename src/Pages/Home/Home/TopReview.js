@@ -12,7 +12,7 @@ const TopReview = ({ topReview }) => {
          <h5 className="mb-3">{customer}</h5>
          <h6 className="text-primary mb-3">{serviceName}</h6>
          <p className="px-xl-3">
-            <i className="fas fa-quote-left pe-2"></i> {message}
+            <i className="fas fa-quote-left pe-2 mx-2"></i> {message}
          </p>
          <ul className="list-unstyled d-flex justify-content-center mb-0">
             <li>

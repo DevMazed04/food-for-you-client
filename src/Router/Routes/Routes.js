@@ -8,6 +8,7 @@ import Login from "../../Pages/Login/Login";
 import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Page404 from "../../Pages/Page404/Page404";
 import Register from "../../Pages/Register/Register";
+import Reviews from "../../Pages/Reviews/Reviews";
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import AllServices from "../../Pages/Shared/Services/AllServices";
 import Services from "../../Pages/Shared/Services/Services";
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
             element: <ServiceDetails></ServiceDetails>,
             loader: ({ params }) => fetch(`https://food-for-you-server.vercel.app/services/${params.id}`)
          },
+
          {
             path: '/blog',
             element: <Blog></Blog>

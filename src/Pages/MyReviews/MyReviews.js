@@ -6,9 +6,10 @@ import "./MyReviews.css";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
+
   const [reviews, setReviews] = useState([]);
-  console.log('allReviews:', reviews)
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -18,37 +19,42 @@ const MyReviews = () => {
         setReviews(data);
         setLoading(false);
       });
-  }, []);
+  }, [refresh]);
 
-  const myReviews = reviews.filter(r => r.email === user.email)
-  console.log('myReviews:', myReviews)
+  const myReviews = reviews.filter((r) => r.email === user.email);
 
   return (
     <div>
-      {
-        loading
-          ? <Loader></Loader>
-          :
-          <>
-            <div>
-              {
-                myReviews.length === 0 ? <p className="fs-5 fw-semibold text-danger d-flex justify-content-center align-items-center h-100 text-center">You have no review yet!</p>
-                  :
-                  <section>
-                    <h4 className="mb-4 text-primar text-center fw-bold form-header">
-                      My Reviews ({myReviews.length})
-                    </h4>
+      {loading ? (
+        <Loader></Loader>
+      ) : (
+        <>
+          <div>
+            {myReviews.length === 0 ? (
+              <p className="fs-5 fw-semibold text-danger d-flex justify-content-center align-items-center no-reviews text-center">
+                You have no reviews yet!
+              </p>
+            ) : (
+              <section>
+                <h4 className="mb-4 text-primar text-center fw-bold form-header">
+                  My Reviews ({myReviews.length})
+                </h4>
 
-                    <div className="row row-cols-1 my-reviews mx-auto">
-                      {myReviews.map((myReview) => (
-                        <MyReviewCard key={myReview._id} myReview={myReview}></MyReviewCard>
-                      ))}
-                    </div>
-                  </section>
-              }
-            </div>
-          </>
-      }
+                <div className="row row-cols-1 my-reviews mx-auto">
+                  {myReviews.map((myReview) => (
+                    <MyReviewCard
+                      key={myReview._id}
+                      myReview={myReview}
+                      refresh={refresh}
+                      setRefresh={setRefresh}
+                    ></MyReviewCard>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

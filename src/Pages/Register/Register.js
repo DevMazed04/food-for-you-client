@@ -30,36 +30,50 @@ const Register = () => {
   const handleRegister = (data) => {
     console.log(data);
     const name = data.name;
-    // const image = data.image;
     const email = data.email;
     const password = data.password;
-
     setUserPassword(password);
 
-    createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success(`Registration Successful...`);
-        navigate("/");
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
 
-        const userInfo = {
-          displayName: name,
-        };
+    const url = 'https://api.imgbb.com/1/upload?key=22ec5654c30a25668b99a13501e167cf';
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        // if (imgData.success) {
+        //   console.log(imgData.data.url);
+        // }
+        createUser(email, password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            toast.success(`Registration Successful...`);
+            navigate("/");
 
-        updateUser(userInfo)
-          .then(() => {
-            verifyEmail().then(() => {
-              toast.success("Please check your email for verification link");
-            });
+            const userInfo = {
+              displayName: name,
+              photoURL: imgData.data.url
+            };
+
+            updateUser(userInfo)
+              .then(() => {
+                verifyEmail().then(() => {
+                  toast.success("Please check your email for verification link");
+                });
+              })
+              .catch((err) => console.error(err));
           })
-          .catch((err) => console.error(err));
+          .catch((error) => {
+            console.error(error);
+            toast.error(error.message);
+            setLoading(false);
+          });
       })
-      .catch((error) => {
-        console.error(error);
-        toast.error(error.message);
-        setLoading(false);
-      });
   };
 
   return (
@@ -91,13 +105,20 @@ const Register = () => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>Photo URL</Form.Label>
+              <Form.Label>Photo</Form.Label>
               <Form.Control
                 className="border border-1"
-                type="text"
-                name="photoURL"
-                placeholder="Enter photo URL"
+                placeholder="Add Photo"
+                type="file"
+                {...register("image", {
+                  required: "Photo is Required",
+                })}
               />
+              {errors.image && (
+                <p className="text-danger fw-semibold text-start mt-2">
+                  {errors.image?.message}
+                </p>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">

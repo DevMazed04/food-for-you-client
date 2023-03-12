@@ -3,6 +3,10 @@
    gap: 35px !important;
 }
 
+.no-reviews {
+   min-height: 55vh !important;
+}
+
 @media only screen and (min-width:280px) and (max-width:575px) {
 
    .my-reviews {
