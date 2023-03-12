@@ -1,10 +1,11 @@
 .my-reviews {
-   width: 60% !important;
+   width: 90% !important;
+   gap: 35px !important;
 }
 
 @media only screen and (min-width:280px) and (max-width:575px) {
 
-   .my-review {
-      width: 90% !important;
+   .my-reviews {
+      width: 100% !important;
    }
 }

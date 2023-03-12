@@ -1,146 +1,201 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useContext, useState, } from "react";
 import { Link } from "react-router-dom";
-import "./Register.css";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { ScaleLoader } from "react-spinners";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import "./Register.css";
+import Lottie from "lottie-react";
+import signup from "../../signup.json";
 
 const Register = () => {
-   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-   const [error, setError] = useState("");
-   const [userSuccess, setuserSuccess] = useState(false);
+  const { createUser, updateUser, loading, setLoading, verifyEmail } = useContext(AuthContext);
 
-   const handleRegister = (event) => {
-      event.preventDefault();
-      setuserSuccess(false);
-      const form = event.target;
-      const name = form.name.value;
-      const photoURL = form.photoURL.value;
-      const email = form.email.value;
-      const password = form.password.value;
-      console.log(name, photoURL, email, password);
+  const [userPassword, setUserPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-      if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%&?])/.test(password)) {
-         setError(
-            "Password should contain at least one lowercase and uppercase letter, one digit and one special character!"
-         );
-         return;
-      }
+  const navigate = useNavigate();
 
-      if (password.length < 6) {
-         setError("Password should be minimum 6 characters long!");
-         return;
-      }
-      setError("");
+  const handleRegister = (data) => {
+    console.log(data);
+    const name = data.name;
+    // const image = data.image;
+    const email = data.email;
+    const password = data.password;
 
-      createUser(email, password)
-         .then((result) => {
-            const user = result.user;
-            console.log(user);
-            setuserSuccess(true);
-            setError("");
-            form.reset();
-            handleUpdateUserProfile(name, photoURL);
-            window.location.reload();
-         })
-         .catch((error) => {
-            console.error("error", error);
-            setError(error.message);
-            setuserSuccess(false);
-         });
-   };
+    setUserPassword(password);
 
-   const handleUpdateUserProfile = (name, photoURL) => {
-      const profile = {
-         displayName: name,
-         photoURL: photoURL,
-      };
-      updateUserProfile(profile)
-         .then(() => {
-            console.log("Profile Updated!");
-         })
-         .catch((error) => console.error("error", error));
-   };
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success(`Registration Successful...`);
+        navigate("/");
 
-   return (
-      <div className="register mx-auto shadow-lg p-4 rounded-4 mt-5 mb-5">
-         <h4 className="mb-4 text-primar text-center fw-bold form-header">
-            Please Register
-         </h4>
-         <Form onSubmit={handleRegister}>
+        const userInfo = {
+          displayName: name,
+        };
+
+        updateUser(userInfo)
+          .then(() => {
+            verifyEmail().then(() => {
+              toast.success("Please check your email for verification link");
+            });
+          })
+          .catch((err) => console.error(err));
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+        setLoading(false);
+      });
+  };
+
+  return (
+    <section className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div className="lottie-signup">
+        <Lottie animationData={signup} loop={true} />
+      </div>
+
+      <div className="signup-container">
+        <div className="register mx-auto shadow p-4 rounded-4 mt-5 mb-5 card">
+          <h4 className="mb-4 text-primar text-center fw-bold form-header">
+            Sign Up
+          </h4>
+
+          <Form onSubmit={handleSubmit(handleRegister)}>
             <Form.Group className="mb-3" controlId="formBasicName">
-               <Form.Label>Full Name</Form.Label>
-               <Form.Control
-                  className="border border-1"
-                  type="text"
-                  name="name"
-                  placeholder="Enter Name"
-                  required
-               />
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control
+                className="border border-1"
+                type="text"
+                placeholder="Enter Full Name"
+                {...register("name", { required: "Full Name is required" })}
+              />
+              {errors.name && (
+                <p className="text-danger fw-semibold text-start mt-2">
+                  {errors.name?.message}
+                </p>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicName">
-               <Form.Label>Photo URL</Form.Label>
-               <Form.Control
-                  className="border border-1"
-                  type="text"
-                  name="photoURL"
-                  placeholder="Enter photo URL"
-               />
+              <Form.Label>Photo URL</Form.Label>
+              <Form.Control
+                className="border border-1"
+                type="text"
+                name="photoURL"
+                placeholder="Enter photo URL"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-               <Form.Label>Email</Form.Label>
-               <Form.Control
-                  className="border border-1"
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email"
-                  required
-               />
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                className="border border-1"
+                type="email"
+                placeholder="Enter Email"
+                {...register("email", { required: "Email is required" })}
+              />
+              {errors.email && (
+                <p className="text-danger fw-semibold text-start mt-2">
+                  {errors.email?.message}
+                </p>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-               <Form.Label>Password</Form.Label>
-               <Form.Control
+              <Form.Label>Password</Form.Label>
+              <div className="d-flex justify-content-center align-items-center">
+                <Form.Control
                   className="border border-1"
-                  type="password"
-                  name="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter Password"
-                  required
-               />
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be six character or longer",
+                    },
+                    pattern: {
+                      value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                      message:
+                        "Password must have uppercase, number and special characters",
+                    },
+                  })}
+                />
+                {userPassword.length === 0 ? (
+                  <span
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? (
+                      <AiFillEyeInvisible className="show-password" />
+                    ) : (
+                      <AiFillEye className="show-password" />
+                    )}
+                  </span>
+                ) : (
+                  <></>
+                )}
+
+              </div>
+              {errors.password && (
+                <p className="text-danger fw-semibold text-start mt-2">
+                  {errors.password?.message}
+                </p>
+              )}
             </Form.Group>
-
-            <p className="text-danger fw-bold">{error}</p>
-
-            {userSuccess && (
-               <p className="text-success fw-semibold">
-                  User Created Successfully...
-               </p>
-            )}
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-               <Form.Check type="checkbox" label="Terms and Conditions" required />
+              <Form.Check type="checkbox" label="Terms and Conditions"
+                {...register("check", { required: "Tick this box" })}
+              />
+              {errors?.check && (
+                <p className="text-danger fw-semibold text-start mt-2">
+                  {errors.check?.message}
+                </p>
+              )}
             </Form.Group>
+
             <div>
-               <div>
-                  <Button variant="primary" type="submit" className="reg-btn w-100">
-                     Register
-                  </Button>
-               </div>
-               <p className="m-0 text-center">
-                  <small>
-                     Already have an account? Please <span> </span>
-                     <Link to="/login">
-                        <b>Login</b>
-                     </Link>
-                  </small>
-               </p>
+              <div>
+                <Button variant="primary" type="submit" className="reg-btn w-100">
+                  {loading ? (
+                    <div className="d-flex justify-content-center align-items-center py-1">
+                      <ScaleLoader color="#fff" height="13" speedMultiplier=".6" />
+                    </div>
+                  ) : (
+                    "Register"
+                  )}
+                </Button>
+              </div>
+              <p className="m-0 text-center">
+                <small>
+                  Already have an account? Please <span> </span>
+                  <Link to="/login">
+                    <b>Sign in</b>
+                  </Link>
+                </small>
+              </p>
             </div>
-         </Form>
+          </Form>
+        </div >
       </div>
-   );
+    </section>
+  );
 };
 
 export default Register;

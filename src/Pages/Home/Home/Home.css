@@ -24,6 +24,9 @@
    margin-top: 75px;
 }
 
+.cust-say {
+   width: 100%;
+}
 
 @media only screen and (min-width:280px) and (max-width:575px) {
 
@@ -41,6 +44,10 @@
    .lottie {
       width: 75% !important;
       margin-top: 20px !important;
+   }
+
+   .cust-say {
+      width: 90%;
    }
 
    .w-discover {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  RotateLoader
-} from "react-spinners";
+import Loader from "../Loader/Loader";
+// import {RotateLoader} from "react-spinners";
 import ServiceCard from "../ServiceCard/ServiceCard";
 import "./AllServices.css";
 
@@ -24,11 +23,8 @@ const AllServices = () => {
       {
         loading
           ?
-          // <div className="loading">
-          //   <RotateLoader
-          //     color="#2776ab"  speedMultiplier=".5" />
-          // </div>
-          <div class="loader"></div>
+          // <div className="loading"> <RotateLoader color="#2776ab"  speedMultiplier=".5" /></div>
+          <Loader></Loader>
           :
           <section className="container mb-5">
             <div className="mx-auto w-discover">

@@ -1,13 +1,16 @@
+import React, { createContext, useEffect, useState } from "react";
 import {
    createUserWithEmailAndPassword,
    getAuth,
+   GoogleAuthProvider,
    onAuthStateChanged,
+   sendEmailVerification,
+   sendPasswordResetEmail,
    signInWithEmailAndPassword,
    signInWithPopup,
    signOut,
    updateProfile,
 } from "firebase/auth";
-import React, { createContext, useEffect, useState } from "react";
 import app from "../../firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -17,53 +20,78 @@ const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
-   const providerLogin = (provider) => {
-      setLoading(true);
-      return signInWithPopup(auth, provider);
-   };
+   const googleProvider = new GoogleAuthProvider();
 
+   // create user
    const createUser = (email, password) => {
       setLoading(true);
       return createUserWithEmailAndPassword(auth, email, password);
    };
 
-   const logIn = (email, password) => {
+   // update user profile
+   const updateUser = (userInfo) => {
+      setLoading(true);
+      return updateProfile(auth.currentUser, userInfo);
+   };
+
+   // Email Verify
+   const verifyEmail = () => {
+      setLoading(true);
+      return sendEmailVerification(auth.currentUser)
+   }
+
+   // sign in
+   const signIn = (email, password) => {
       setLoading(true);
       return signInWithEmailAndPassword(auth, email, password);
    };
 
-   const updateUserProfile = (profile) => {
-      return updateProfile(auth.currentUser, profile);
+   // google sign in
+   const googleSignIn = () => {
+      setLoading(true);
+      return signInWithPopup(auth, googleProvider);
    };
 
+   // logout
    const logOut = () => {
       setLoading(true);
       return signOut(auth);
    };
 
+   // password reset
+   const passwordReset = (email) => {
+      setLoading(true);
+      return sendPasswordResetEmail(auth, email);
+   }
+
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
          setUser(currentUser);
-         // console.log("auth state changed:", currentUser);
+         console.log("currentUser:", currentUser);
          setLoading(false);
       });
-      return () => {
-         unsubscribe();
-      };
+
+      return () => unsubscribe();
    }, []);
 
+
    const authInfo = {
-      user,
-      loading,
-      providerLogin,
       createUser,
-      logIn,
+      user,
+      verifyEmail,
+      updateUser,
+      signIn,
+      googleSignIn,
+      loading,
+      setLoading,
       logOut,
-      updateUserProfile,
+      passwordReset
    };
 
    return (
-      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+      <div>
+         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+      </div>
    );
 };
 

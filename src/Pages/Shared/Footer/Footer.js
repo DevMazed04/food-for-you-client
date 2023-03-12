@@ -47,7 +47,7 @@ const Footer = () => {
                 </p>
                 <p>
                   <Link
-                    to="/services/636e68ead7253d2a6f140c65"
+                    to="/services/636e68ead7253d2a6f140c66"
                     className="text-white text-decoration-none u-link"
                   >
                     Beef Burger

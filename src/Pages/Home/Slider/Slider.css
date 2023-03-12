@@ -3,10 +3,6 @@
    opacity: 93%;
 }
 
-fs-mob {
-   font-size: 21px;
-}
-
 .lh-mob {
    line-height: 20px;
 }
@@ -52,6 +48,7 @@ fs-mob {
 
    .padd-slider {
       padding: 0px 10px !important;
+      margin-top: -25px !important;
    }
 
    .carousel-img {

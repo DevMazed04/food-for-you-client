@@ -1,7 +1,14 @@
 .register {
-   width: 30%;
+   width: 100%;
 }
 
+.signup-container {
+   width: 33%;
+}
+
+.lottie-signup {
+   width: 60% !important;
+}
 
 .form-header {
    color: rgb(49, 123, 172);
@@ -24,6 +31,14 @@
 @media only screen and (min-width:280px) and (max-width:575px) {
 
    .register {
-      width: 85%;
+      width: 95%;
+   }
+
+   .lottie-signup {
+      width: 95% !important;
+   }
+
+   .signup-container {
+      width: 100%;
    }
 }

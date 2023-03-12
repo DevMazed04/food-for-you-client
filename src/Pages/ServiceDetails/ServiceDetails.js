@@ -12,16 +12,18 @@ import ReviewCard from "../ReviewCard/ReviewCard";
 const ServiceDetails = () => {
   const serviceDetails = useLoaderData();
   const { _id, title, description, price, img } = serviceDetails;
-  // console.log('serviceDetails:', serviceDetails);
 
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  console.log('reviews:', reviews)
 
   useEffect(() => {
     fetch(`https://food-for-you-server.vercel.app/reviews`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, [user?.email]);
+  }, []);
+
+  const selectedReviews = reviews.filter(r => r.serviceName === title)
 
   return (
     <div>
@@ -77,15 +79,27 @@ const ServiceDetails = () => {
           <Reviews></Reviews>
 
           <div className="">
-            <h3 className="form-header fw-bold ms-3 mt-5 mb-3 fs-5">All Reviews ({reviews.length})</h3>
+            {/* {
+              selectedReviews.length === 0
+                ? <h3 className="form-header text-danger fw-bold ms-3 mt-5 mb-3 fs-5">No Reviews </h3>
+                :
+                <h3 className="form-header fw-bold ms-3 mt-5 mb-3 fs-5">All Reviews ({selectedReviews.length})</h3>
+            } */}
 
-            <div className="row row-cols-1 g-3">
-              {reviews.map(review => <ReviewCard
-                key={review._id}
-                review={review}>
-              </ReviewCard>)
-              }
-            </div>
+            <h3 className="form-header fw-bold ms-3 mt-5 mb-3 fs-5">All Reviews ({selectedReviews.length})</h3>
+
+            {
+              selectedReviews.length === 0
+                ? <h3 className="form-header text-danger fw-semibold ms-3 mt-4 mb-3 fs-5 d-flex justify-content-center align-items-center text-center">Currently this food has no reviews. Please give your first review! </h3>
+                :
+                <div className="row row-cols-1 g-3">
+                  {selectedReviews.map(review => <ReviewCard
+                    key={review._id}
+                    review={review}>
+                  </ReviewCard>)
+                  }
+                </div>
+            }
           </div>
         </div>
 

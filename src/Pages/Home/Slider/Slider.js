@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Slider = () => {
 
   return (
-    <section className="containe mt-1 mt-sm-3 padd-slider">
+    <section className="mt-sm-3 padd-slider">
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner rounded slider-overlay">
 

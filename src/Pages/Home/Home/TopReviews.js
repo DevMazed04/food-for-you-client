@@ -17,16 +17,14 @@ const TopReviews = () => {
       <section>
         <div className="row d-flex justify-content-center">
           <div className="col-md-10 col-xl-8 text-center">
-            <h3 className="mb-4">What My Customer Says</h3>
-            <p className="mb-4 pb-2 mb-md-5 pb-md-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
-              numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
-              quisquam eum porro a pariatur veniam.
+            <h3 className="mt-4 mt-lg-5 mb-4">What My Customer Says</h3>
+            <p className="mb-4 pb-2 mb-md-5 pb-md-0 cust-say mx-auto">
+              My delivery service provides fast, often same-day delivery, within a particular area. A service may specialize in a specific type of delivery, such as delivering food, or it might deliver all kinds of packages.
             </p>
           </div>
         </div>
 
-        <div className="row text-center">
+        <div className="row text-center mt-5">
           {
             topReviews.map(topReview => <TopReview
               key={topReview._id}

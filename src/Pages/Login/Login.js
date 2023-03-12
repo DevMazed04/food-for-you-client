@@ -1,128 +1,248 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
+import { useForm } from "react-hook-form";
 import Form from "react-bootstrap/Form";
-import { GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "./Login.css";
-import { FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GrGoogle } from "react-icons/gr";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { ScaleLoader } from "react-spinners";
+import { toast } from "react-hot-toast";
+import Lottie from "lottie-react";
+import login from "../../login.json";
+import "./Login.css";
 
 const Login = () => {
-  const { providerLogin, logIn } = useContext(AuthContext);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const {
+    signIn,
+    googleSignIn,
+    updateUser,
+    loading,
+    setLoading,
+    passwordReset,
+  } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  console.log("userPasswordLength:", userPassword.length);
+
   const from = location.state?.from?.pathname || "/";
 
-  const googleProvider = new GoogleAuthProvider();
-
-  const [error, setError] = useState("");
-
-  const handleLogin = (event) => {
+  const handleLogin = (data, event) => {
     event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+    const email = data.email;
+    const password = event.target.password.value;
 
-    logIn(email, password)
+    if (userPassword.length > 0) {
+      setPasswordError("");
+    } else {
+      setPasswordError("Please Enter Your Password");
+      return;
+    }
+
+    signIn(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        form.reset();
-        setError("");
+        // const user = result.user;
+        // console.log(user);
+        toast.success("Login Successful..");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error("error", error);
-        setError(error.message);
+        console.error(error);
+        toast.error(error.message);
+        setLoading(false);
       });
   };
 
-  const handleGoogleSignIn = (event) => {
-    event.preventDefault();
-
-    providerLogin(googleProvider)
+  const handleGoogleSignIn = () => {
+    googleSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Login Successful..");
         navigate(from, { replace: true });
+
+        const name = user.displayName;
+        const email = user.email;
+
+        const userInfo = {
+          name: name,
+          email: email,
+        };
+
+        updateUser(userInfo)
+          .then(() => { })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
-        console.error("error", error);
+        console.error(error);
+        toast.error(error.message);
+        // setPasswordError(error.message);
+        setLoading(false);
+      });
+  };
+
+  const handlePasswordReset = () => {
+    if (!userEmail) {
+      toast.error("Please enter your email to reset password");
+      return;
+    }
+    passwordReset(userEmail)
+      .then(() => {
+        toast.success("please check your email for password reset link");
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+        setLoading(false);
       });
   };
 
   return (
-    <div className="login mx-auto shadow-lg p-4 rounded-4 mt-5">
-      <h4 className="mb-4 text-center form-header fw-bold">Login Here</h4>
-      <Form onSubmit={handleLogin}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            className="border border-1"
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            required
-          />
-        </Form.Group>
+    <section className="d-flex flex-column flex-md-row justify-content-between align-items-center">
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            className="border border-1"
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            required
-          />
-        </Form.Group>
+      <div className="lottie-signup">
+        <Lottie animationData={login} loop={true} />
+      </div>
 
-        <p className="text-danger fw-bold">{error}</p>
+      <div className="login mx-auto shadow p-4 rounded-3 mt-5 card">
+        <h4 className="mb-4 text-center form-header fw-bold">Sign In</h4>
 
-        <div>
-          <div>
-            <Button variant="primary" type="submit" className="w-100 login-btn rounded-pill">
-              Login
+        <div className="">
+          <div className="google-log mx-auto">
+            <Button
+              variant="success"
+              type="submit"
+              className="w-100 rounded-3"
+              onClick={handleGoogleSignIn}
+            >
+              <GrGoogle className="fs-6"></GrGoogle>
+              <span className="ms-2 google">
+                WITH GOOGLE
+              </span>
             </Button>
           </div>
-
-          <div className="d-flex justify-content-around">
+        </div>
+        <Form onSubmit={handleSubmit(handleLogin)}>
+          <div className="d-flex justify-content-around mt-3">
             <hr className="w-hr" />
-            <p >
-              <small className="text-center text-primary fw-semibold mb-2">OR</small>
+            <p>
+              <small className="text-center text-primary fw-semibold mb-2">
+                OR
+              </small>
             </p>
             <hr className="w-hr" />
           </div>
 
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              className="border border-1 rounded-3"
+              type="email"
+              placeholder="Enter Your Email"
+              {...register("email", { required: "Please! Enter your email" })}
+              onBlur={(event) => setUserEmail(event.target.value)}
+            />
+            {errors.email && (
+              <p className="text-danger fw-semibold text-start mt-2">
+                {errors.email?.message}
+              </p>
+            )}
+          </Form.Group>
 
-          <div className="">
-            <div>
-              <Button
-                variant="outline-secondary"
-                type="submit"
-                className="w-100 rounded-pill"
-                onClick={handleGoogleSignIn}
-              >
-                <FaGoogle className="fs-5"></FaGoogle>
-                <span className="ms-2">Google</span>
-              </Button>
+          <Form.Group className="mb-2" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+
+            <div className="d-flex justify-content-center align-items-center">
+              <Form.Control
+                className="border border-1 rounded-3"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter Your Password"
+                {...register("password")}
+                onChange={(e) => setUserPassword(e.target.value)}
+              />
+              {userPassword.length > 0 ? (
+                <span
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                >
+                  {showPassword ? (
+                    <AiFillEyeInvisible className="show-password" />
+                  ) : (
+                    <AiFillEye className="show-password" />
+                  )}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
+
+            {userPassword.length === 0 ? (
+              <>
+                {passwordError && (
+                  <p className="text-danger fw-semibold text-start mt-2">
+                    {passwordError}
+                  </p>
+                )}
+              </>
+            ) : (
+              <></>
+            )}
+          </Form.Group>
+
+
+          <div className="mb-3" onClick={handlePasswordReset}>
+            <Form.Text>
+              <span className="forget-password">Forgot Your Password?</span>
+            </Form.Text>
           </div>
 
-          <p className="m-0 text-center mt-3">
-            <small>
-              Don't have an account? Please <span> </span>
-              <Link to="/register">
-                <b>Register</b>
-              </Link>
-            </small>
-          </p>
-        </div>
-      </Form>
-    </div>
+
+          <div>
+            <div>
+              <Button
+                variant="primary"
+                type="submit"
+                className="w-100 login-btn rounded-3"
+              >
+                {loading ? (
+                  <div className="d-flex justify-content-center align-items-center py-1">
+                    <ScaleLoader color="#fff" height="13" speedMultiplier=".6" />
+                  </div>
+                ) : (
+                  "Login"
+                )}
+              </Button>
+            </div>
+
+            <p className="m-0 text-center mt-3">
+              <small>
+                Don't have an account? Please
+                <Link to="/register">
+                  <span className="dont-acc ms-1">Sign up</span>
+                </Link>
+              </small>
+            </p>
+          </div>
+        </Form>
+      </div>
+    </section>
   );
 };
 

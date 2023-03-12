@@ -3,7 +3,7 @@
 }
 
 .login-btn {
-   margin-bottom: 10px;
+   margin-bottom: 0px;
    background-color: rgb(35, 107, 155) !important;
 }
 
@@ -15,9 +15,41 @@
    width: 80px;
 }
 
+.google {
+   font-size: 14px;
+   font-weight: 500;
+}
+
+.google-log {
+   width: 100% !important;
+}
+
+
+.forget-password {
+   color: black;
+   font-size: 13px;
+   cursor: pointer;
+}
+
+.forget-password:hover {
+   font-weight: 600;
+   color: red;
+}
+
+.show-password {
+   font-size: 18px;
+   cursor: pointer;
+   margin-left: -32px;
+}
+
+.dont-acc {
+   text-decoration: none;
+   font-weight: bold;
+}
+
 @media only screen and (min-width:280px) and (max-width:575px) {
 
    .login {
-      width: 85%;
+      width: 95%;
    }
 }
